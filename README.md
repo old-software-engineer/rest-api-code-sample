@@ -25,6 +25,8 @@ To get the local rails server running :
 - `rails s` to start the local server.
 
 ## Screenshots
+![screenshot-localhost_3000-2022 11 07-15_29_29](https://user-images.githubusercontent.com/15182066/200840898-9965095a-d624-43bf-b005-c2cb31468b69.png)
+![screenshot-localhost_3000-2022 11 07-15_29_55](https://user-images.githubusercontent.com/15182066/200840920-b225b7fa-4a12-4393-a299-4bdc3748366a.png)
 
 ## About
 
