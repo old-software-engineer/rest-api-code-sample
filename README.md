@@ -1,16 +1,22 @@
-# README
+# REST API Code Sample
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## REST API
 
-Things you may want to cover:
+A REST API (also known as RESTful API) is an application programming interface (API or web API) that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services.
+
+## Rails API
+
+Rails::API is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example for its usage is in API applications only, where you usually don't need the entire Rails middleware stack nor template generation.
+
+#### Things you may want to cover:
 
 - Ruby version 2.7.2
 - Rails version 6.0.6
 - Database Sqlite
+- JSON Web Token (JWT)
 - Github
 
-* Getting Started
+## Getting Started
 
 To get the local rails server running :
 
@@ -18,109 +24,94 @@ To get the local rails server running :
 - `rake db:migrate` to make all database migrations
 - `rails s` to start the local server.
 
-# Code Overview
+## Screenshots
 
-​
+## About
 
-## Folders
+REST API Code Sample is simple web apllication which implements basic CRUD operations on Books, using Rails api and JWT for for securely transmitting information between parties as a JSON object.
 
-- `app/models` - Contains the database models for the application where we can define methods, validations, queries, and relations to other models.
-- `app/views` - Render the react element.
-- `app/controllers` - Contains the controllers where requests are routed to their actions, where we find and manipulate our models and return them for the views to render.
-- `config` - Contains configuration files for our Rails application and for our database, along with an `initializers` folder for scripts that get run on boot.
-- `db` - Contains the migrations needed to create our database schema.
-  ​
+## Concept
 
-## JWT on Rails
+### Associations:
 
-​
+- **_The has_many Association_** :
 
-- `JSON Web Token (JWT)` gem is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
-  ​
+A has_many association indicates a one-to-many connection with another model.
+This association indicates that each instance of the model has zero or more instances of another model.
 
-```shell
-  gem 'jwt'
+- **_The belongs_to Association_** :
 
-```
+A belongs_to association sets up a connection with another model, such that each instance of the declaring model "belongs to" one instance of the other model.
 
-​
+### Representers :
 
-### Add New Component in React
+Representers help to parse and render documents for JSON or XML APIs.
 
-- To create new Component, Go to `app/javascript/component` add `.js` file.
-- Example
+- **Book Representer** :
 
 ```shell
-  import React from 'react';
-​
-    const ComponentName = () =>{
-        return(
-            <div>Hello, You have Successfully created Component.</div>
-        );
+class BookRepresenter
+  def initialize(book)
+    @book = book
+  end
+
+  def as_json
+    {
+      id: book.id,
+      title: book.title,
+      author_name: "#{book.author.first_name} #{book.author.last_name}",
+      author_age: book.author.age
     }
-​
-    export default ComponentName.js
+  end
+end
 ```
 
-## Routes
+### Active Model Serializers :
 
-````shell
-  Path / Url             	HTTP Verb        Path	                       Controller#Action
+ActiveModelSerializers is a library which helps to build an object, which is returned to create a JSON object.
 
-
-api_v1_books_path	          GET	       /api/v1/books(.:format)         api/v1/books#index
-	                          POST	       /api/v1/books(.:format)         api/v1/books#create
-
-api_v1_book_path              GET	       /api/v1/books/:id(.:format)     api/v1/books#show
-                              PATCH	       /api/v1/books/:id(.:format)     api/v1/books#update
-                              PUT	      /api/v1/books/:id(.:format)      api/v1/books#update
-                              DELETE     /api/v1/books/:id(.:format)       api/v1/books#destroy
-
-api_v1_authenticate_path      POST	     /api/v1/authenticate(.:format)    api/v1/authentication#create
-​
-​
-
-## API
-
-​
-Uses Rest API.
-
-- A `REST API` (also known as RESTful API) is an application programming interface (API or web API) that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services.
-  ​
-
-## Models
-
-- `User Model` - Model contain Email and password.
-- `Books Model` - Model contain Name image and slug.
-- `Author Model` - Model contain Title description and score based on star rating.
-  ​
-
-## Migration
+- **Author Serializer** :
 
 ```shell
-    rails g model Author first_name last_name age
-
-    rails g model Book title author_id author:belongs_to
-​
-    rails g model User username password_digest
-````
-
-```shell
-    rails db:migrate
+class AuthorSerializer < ActiveModel::Serializer
+  attributes :id, :first_name, :last_name, :age
+  has_many :books
+end
 ```
 
-## Representers
+### JSON Web Token (JWT) :
 
-- Representers help to parse and render documents for JSON or XML APIs.
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+
+## Models :
+
+**Author** :
 
 ```shell
-    gem 'fast_jsonapi'
+class Author < ApplicationRecord
+  has_many :books, dependent: :destroy
+end
+
 ```
 
+**Book** :
+
 ```shell
-    rails g serializer Airline name image_url slug
-    rails g serializer Review title description score airline_id
+class Book < ApplicationRecord
+  belongs_to :author
+end
 ```
+
+**User**:
+
+```shell
+class User < ApplicationRecord
+  has_secure_password
+end
+
+```
+
+## Formatting
 
 ## Rubocop
 
@@ -129,41 +120,4 @@ Uses Rest API.
 
 ```shell
     gem 'rubocop-rails', require: false
-```
-
-​
-
-# Configuration
-
-​
-
-## Authentication
-
-JWT gem is used for a compact and self-contained way for securely transmitting information between parties as a JSON object.JSON Web Tokens consist of three parts separated by dots (.), which are:
-
-a) Header
-b) Payload
-c) Signature
-​
-
-### Add jwt gem in Gemfile
-
-```shell
-    gem 'jwt'
-```
-
-```shell
-    bundle install
-```
-
-### Install Devise
-
-```shell
-    rails g jwt:install
-```
-
-### Create Authentication Controller
-
-```shell
-    rails generate controllers users
 ```
