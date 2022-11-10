@@ -30,7 +30,7 @@ To get the local rails server running :
 
 ## About
 
-REST API Code Sample is simple web apllication which implements basic CRUD operations on Books, using Rails api and JWT for for securely transmitting information between parties as a JSON object.
+REST API Code Sample is simple web application which implements basic CRUD operations on Books, using Rails api and JWT for for securely transmitting information between parties as a JSON object.
 
 ## Concept
 
@@ -113,13 +113,19 @@ end
 
 ```
 
+## Gems
+
+- JSON Web Token (JWT)
+- Rubocop Rails
+- Active Model Serializers
+
 ## Formatting
 
-## Rubocop
+### Rubocop
 
 - RuboCop is a Ruby code style checking and code formatting tool.
   ​
 
 ```shell
-    gem 'rubocop-rails', require: false
+    gem 'rubocop-rails'
 ```
