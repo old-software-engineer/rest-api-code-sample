@@ -4,9 +4,7 @@ module Api
   module V1
     # this is books controller
     class BooksController < ApplicationController
-      include ActionController::HttpAuthentication::Token
-
-      before_action :authenticate_user, only: %i[create destroy]
+      before_action :authenticate_user, only: %i[create destroy update]
 
       # GET /api/v1/books
       def index
@@ -45,48 +43,6 @@ module Api
         end
       end
 
-      # Get /api/v1/authors
-      def author_create
-        author = Author.new(author_params)
-        if author.save
-          render json:  author, status: :created
-        else
-          render json:  author.errors, status: :unprocessable_entity
-        end
-      end
-
-      # PUT /api/v1/authors
-      def author_update
-        author = Author.find(params[:id])
-        if author.update(author_params)
-          render json: author, status: :created
-        else
-          render json: author.errors, status: :unprocessable_entity
-        end
-      end
-
-      # Get /api/v1/author_index
-      def author_index
-        authors = Author.all
-
-        render json: authors, include: ['books']
-      end
-
-      # Get /api/v1/author_show/:id
-      def author_show
-        author = Author.find(params[:id])
-
-        render json: author.to_json(only: %i[first_name last_name age],
-                                    include: [books: { only: [:title] }])
-      end
-
-      # DELETE /api/v1/author_destroy/:id
-      def author_destroy
-        Author.find(params[:id]).destroy
-
-        head :no_content
-      end
-
       # DELETE /api/v1/books/:id
       def destroy
         Book.find(params[:id]).destroy!
@@ -95,18 +51,6 @@ module Api
       end
 
       private
-
-      def authenticate_user
-        token, _options = token_and_options(request)
-        user_id = AuthenticationTokenService.decode(token)
-        User.find(user_id)
-      rescue ActiveRecord::RecordNotFound, JWT::DecodeError
-        render status: :unauthorized
-      end
-
-      def author_params
-        params.require(:author).permit(:first_name, :last_name, :age)
-      end
 
       def book_params
         params.require(:book).permit(:title, :author_id)

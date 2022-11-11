@@ -5,11 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :books
-      get 'author_index', to: 'books#author_index'
-      get 'author_show/:id', to: 'books#author_show'
-      post 'author_create', to: 'books#author_create'
-      put 'author_update/:id', to: 'books#author_update'
-      delete 'author_destroy/:id', to: 'books#author_destroy'
+      resources :authors
       post 'authenticate', to: 'authentication#create'
     end
   end

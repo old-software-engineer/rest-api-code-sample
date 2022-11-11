@@ -25,6 +25,7 @@ To get the local rails server running :
 - `rails s` to start the local server.
 
 ## Screenshots
+
 ![screenshot-localhost_3000-2022 11 07-15_29_29](https://user-images.githubusercontent.com/15182066/200840898-9965095a-d624-43bf-b005-c2cb31468b69.png)
 ![screenshot-localhost_3000-2022 11 07-15_29_55](https://user-images.githubusercontent.com/15182066/200840920-b225b7fa-4a12-4393-a299-4bdc3748366a.png)
 
@@ -85,34 +86,6 @@ end
 
 JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
 
-## Models :
-
-**Author** :
-
-```shell
-class Author < ApplicationRecord
-  has_many :books, dependent: :destroy
-end
-
-```
-
-**Book** :
-
-```shell
-class Book < ApplicationRecord
-  belongs_to :author
-end
-```
-
-**User**:
-
-```shell
-class User < ApplicationRecord
-  has_secure_password
-end
-
-```
-
 ## Gems
 
 - JSON Web Token (JWT)
@@ -125,7 +98,3 @@ end
 
 - RuboCop is a Ruby code style checking and code formatting tool.
   ​
-
-```shell
-    gem 'rubocop-rails'
-```
