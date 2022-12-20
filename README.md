@@ -25,10 +25,15 @@ To get the local rails server running :
 - `rails s` to start the local server.
 
 ## Screenshots
+
+### Author's List
 ![Authors](https://user-images.githubusercontent.com/15182066/208677879-e785ccd9-5fbd-4811-b610-7619d46c7cf8.png)
-
+### Author 
 ![Autor](https://user-images.githubusercontent.com/15182066/208677509-52c2d1f1-cfe5-4fe9-ae1f-bdf92d7bce23.png)
-
+### Books List
+![books](https://user-images.githubusercontent.com/15182066/208679237-2991f0f1-4883-48ba-bdf4-77ad7a0d788a.png)
+### Book
+![book](https://user-images.githubusercontent.com/15182066/208679229-96ab4059-1845-4476-9bb9-06e41339f9f3.png)
 
 ## About
 
@@ -94,9 +99,9 @@ JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and s
 - Rubocop Rails
 - Active Model Serializers
 
-## Formatting
+## Linting And Formatting
 
-### Linting And Rubocop
+### Rubocop
 
 - RuboCop is a Ruby code style checking and code formatting tool.
   ​
