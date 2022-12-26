@@ -6,7 +6,7 @@ A REST API (also known as RESTful API) is an application programming interface (
 
 ## Rails API
 
-Rails::API is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example for its usage is in API applications only, where you usually don't need the entire Rails middleware stack nor template generation.
+Rails: API is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example of its usage is in API applications only, where you usually don't need the entire Rails middleware stack or template generation.
 
 #### Things you may want to cover:
 
@@ -37,7 +37,7 @@ To get the local rails server running :
 
 ## About
 
-REST API Code Sample is simple web application which implements basic CRUD operations on Books, using Rails api and JWT for for securely transmitting information between parties as a JSON object.
+REST API Code Sample is a simple web application that implements basic CRUD operations on Books, using Rails API and JWT for securely transmitting information between parties as a JSON object.
 
 ## Concept
 
@@ -46,8 +46,7 @@ REST API Code Sample is simple web application which implements basic CRUD opera
 
 - **_The has_many Association_** :
 
-A has_many association indicates a one-to-many connection with another model.
-This association indicates that each instance of the model has zero or more instances of another model.
+A has_many association indicates a one-to-many connection with another model. This association indicates that each instance of the model has zero or more instances of another model.
 
 - **_The belongs_to Association_** :
 
@@ -104,4 +103,4 @@ JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and s
 ### Rubocop
 
 - RuboCop is a Ruby code style checking and code formatting tool.
-  ​
+  
